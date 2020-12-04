@@ -54,11 +54,8 @@ function treesEncounteredSlopes(horizontalSlope, verticalSlope, trail) {
   let currentPathVertical = 0;
   const rowLength = trail[0].length;
   for(let i = 0; i < (trail.length/verticalSlope)-1; i++) {
-    console.log('trail i:', i)
     currentPathVertical += verticalSlope;
     currentPathHorizontal = (currentPathHorizontal+horizontalSlope) % (rowLength);
-    console.log("currentPathVertical", currentPathVertical)
-    console.log("currentPathHorizontal", currentPathHorizontal)
     if(trail[currentPathVertical][currentPathHorizontal] === '#') {
       trees += 1;
     }
