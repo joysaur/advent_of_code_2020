@@ -10,7 +10,7 @@ fs.readFile('./files/day_3_input.csv', 'utf8' , (err, _data) => {
   const forest = _data.split('\n').filter(Boolean)
 
   // part one 
-  const totalTrees = treesEncountered(forest)
+  const totalTrees = treesEncounteredSlopes(3,1,forest)
   console.log('trees', totalTrees)
   // answer = 218
 
@@ -33,15 +33,17 @@ fs.readFile('./files/day_3_input.csv', 'utf8' , (err, _data) => {
   // 3847183340
 })
 
-
+// part one (obsolete can use part 2 function)
 function treesEncountered(trail) {
   // down 1 right 3
   let trees = 0;
   let currentPathHorizontal = 0;
+  let currentPathVertical = 0;
   const rowLength = trail[0].length;
-  for(let i = 1; i < trail.length; i++) {
+    while(currentPathVertical < trail.length - 1) {
     currentPathHorizontal = (currentPathHorizontal+3) % (rowLength);
-    if(trail[i][currentPathHorizontal] === '#') {
+    currentPathVertical += 1;
+    if(trail[currentPathVertical][currentPathHorizontal] === '#') {
       trees += 1;
     }
   }
@@ -53,7 +55,7 @@ function treesEncounteredSlopes(horizontalSlope, verticalSlope, trail) {
   let currentPathHorizontal = 0;
   let currentPathVertical = 0;
   const rowLength = trail[0].length;
-  for(let i = 0; i < (trail.length/verticalSlope)-1; i++) {
+  while (currentPathVertical < trail.length - verticalSlope) {
     currentPathVertical += verticalSlope;
     currentPathHorizontal = (currentPathHorizontal+horizontalSlope) % (rowLength);
     if(trail[currentPathVertical][currentPathHorizontal] === '#') {
