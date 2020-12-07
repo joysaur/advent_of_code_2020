@@ -126,7 +126,7 @@ function additionalValidations(fieldsAndValues) {
       case 'ecl': {
         if(!['amb','blu','brn', 'gry', 'grn', 'hzl', 'oth'].includes(f[1])) {
           validated = false
-        }g
+        }
         break;
       }
       case 'pid': {
